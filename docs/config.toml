@@ -1,0 +1,5 @@
+[[rule]]
+name = "send message" # name rule for logging
+trigger = "activewindow>>zen,Zen Browser" # trigger from IPC socket message
+actions = ["notify-send 'test'", "pkill waybar"] # actions to execute to sh -c 
+
