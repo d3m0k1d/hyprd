@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/d3m0k1d/hyprd/pkg/ipc"
 	"github.com/spf13/cobra"
 	"os"
 )
@@ -26,4 +27,15 @@ func Execute() {
 func main() {
 	Init()
 	Execute()
+	listner := &ipc.Listener{}
+	eventsChan, err := listner.Start()
+	if err != nil {
+		os.Exit(1)
+	}
+	for {
+		select {
+		case eventsChan := <-eventsChan:
+			fmt.Println(eventsChan)
+		}
+	}
 }
